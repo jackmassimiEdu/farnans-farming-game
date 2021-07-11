@@ -1,13 +1,10 @@
 //! Module to hold miscellaneous funtions that don't belong
 //! to a particular struct
 use crate::population;
-use crate::player;
-use crate::crop;
-
 /// Perform an interaction on a given tile based on
 /// the currently equipped tool
-pub fn use_tool<'a>(x: i32, y: i32, mut pop: &mut population::Population<'a>, tool: i32, player: &mut player::Player<'a>) {
-    //println!("x: {}, y: {}", x, y);
+pub fn use_tool(x: i32, y: i32, mut pop: &mut population::Population, tool: i32) {
+    println!("x: {}, y: {}", x, y);
     match tool {
         // Hand
         0 => {
@@ -62,10 +59,10 @@ pub fn use_tool<'a>(x: i32, y: i32, mut pop: &mut population::Population<'a>, to
                     == "None"
             {
                 // TODO check to see if we have any seeds
-                let crop = player.get_inventory().get_carrot_seed(0);
-                if let Some(c) = crop {
-                    pop.set_crop_with_index(x as u32, y as u32, c);
-                }
+                let mut _c = pop.get_crop_with_index_mut(x as u32, y as u32);
+                _c.set_crop_type("Carrot");
+                _c.set_stage(0);
+                _c.set_water(false);
             }
         }
         // Seed 2
@@ -78,10 +75,10 @@ pub fn use_tool<'a>(x: i32, y: i32, mut pop: &mut population::Population<'a>, to
                     == "None"
             {
                 // TODO check to see if we have any seeds
-                let crop = player.get_inventory().get_corn_seed(0);
-                if let Some(c) = crop {
-                    pop.set_crop_with_index(x as u32, y as u32, c);
-                }
+                let mut _c = pop.get_crop_with_index_mut(x as u32, y as u32);
+                _c.set_crop_type("Corn");
+                _c.set_stage(0);
+                _c.set_water(false);
             }
         }
         // Seed 3
@@ -94,10 +91,10 @@ pub fn use_tool<'a>(x: i32, y: i32, mut pop: &mut population::Population<'a>, to
                     == "None"
             {
                 // TODO check to see if we have any seeds
-                let crop = player.get_inventory().get_potato_seed(0);
-                if let Some(c) = crop {
-                    pop.set_crop_with_index(x as u32, y as u32, c);
-                }
+                let mut _c = pop.get_crop_with_index_mut(x as u32, y as u32);
+                _c.set_crop_type("Potato");
+                _c.set_stage(0);
+                _c.set_water(false);
             }
         }
         // Seed 4
@@ -110,10 +107,10 @@ pub fn use_tool<'a>(x: i32, y: i32, mut pop: &mut population::Population<'a>, to
                     == "None"
             {
                 // TODO check to see if we have any seeds
-                let crop = player.get_inventory().get_lettuce_seed(0);
-                if let Some(c) = crop {
-                    pop.set_crop_with_index(x as u32, y as u32, c);
-                }
+                let mut _c = pop.get_crop_with_index_mut(x as u32, y as u32);
+                _c.set_crop_type("Lettuce");
+                _c.set_stage(0);
+                _c.set_water(false);
             }
         }
         // other
